@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use('/api/inspection/', inspectionListRoutes)
+app.use('/api/inspection', inspectionListRoutes)
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
