@@ -25,6 +25,27 @@ const deleteList = async (req, res) => {
     res.status(200).json(list)
 }
 
+// EDIT a list
+const updateList = async (req, res) => {
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ error: 'No such list' })
+    }
+
+    const list = await InspectionList.findOneAndUpdate({_id: id}, {
+        ...req.body
+    })
+
+    if (!list) {
+        console.log('test')
+        return res.status(404).json({error: 'Cannot find List'})
+    }
+
+    const updatedList = await InspectionList.findById(id)
+
+    res.status(200).json(updatedList)
+}
 
 // create a list
 const createList = async (req, res) => {
@@ -41,5 +62,6 @@ const createList = async (req, res) => {
 module.exports = {
     getAllLists,
     deleteList,
+    updateList,
     createList
 }
