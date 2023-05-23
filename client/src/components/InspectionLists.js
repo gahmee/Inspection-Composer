@@ -5,7 +5,7 @@ const InspectionLists = ({category}) => {
   return (
     <div>
       <h1>{category.title}</h1>
-      {category.list}
+      {category.list.map((i) => <div>{i}</div>)}
     </div>
   )
 }
