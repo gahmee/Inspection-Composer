@@ -1,7 +1,7 @@
 const InspectionList = require('../models/inspectionModel')
 const mongoose = require('mongoose')
 
-// GET all list
+// GET all lists
 const getAllLists = async (req, res) => {
     const lists = await InspectionList.find({})
     res.status(200).json(lists)
@@ -47,7 +47,7 @@ const updateList = async (req, res) => {
     res.status(200).json(updatedList)
 }
 
-// create a list
+// CREATE a list
 const createList = async (req, res) => {
     const {title, list} = req.body
 
