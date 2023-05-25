@@ -7,11 +7,18 @@ import { useState } from 'react'
 
 const Home = () => {
   const [lists, setLists] = useState()
-  const [toggleEdit, setToggleEdit] = useState(false)
+  const [editCategoryId, setEditCategoryId] = useState(null)
 
-  const handleToggleEdit = () => {
-    setToggleEdit(!toggleEdit)
+  const handleToggleEdit = (event, category) => {
+    if (editCategoryId) {
+      setEditCategoryId(null)
+    } else {
+      setEditCategoryId(category._id)
+    }
+    
   }
+
+  
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -31,9 +38,14 @@ const Home = () => {
   return (
     <div>
         <Navbar/>
-        {lists && toggleEdit && lists.map((list) => <InspectionLists category={list}/>)}
-        {lists && !toggleEdit && lists.map((list) => <EditCategory category={list}/>)}
-        <button onClick={handleToggleEdit}>Edit</button>
+        {lists && lists.map((list) => (
+          <>
+          {editCategoryId === list._id ?
+          <EditCategory category={list} handleToggleEdit={handleToggleEdit}/> :
+          <InspectionLists category={list} handleToggleEdit={handleToggleEdit}/>       
+          }
+          </>
+        ))}
     </div>
   )
 }
