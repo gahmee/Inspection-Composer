@@ -1,24 +1,18 @@
 import InspectionLists from "../components/InspectionLists"
 import EditCategory from "../components/EditCategory"
 import Navbar from "../components/Navbar"
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { CategoriesContext } from "../contexts/categoriesContext"
+import { useEffect, useState, useContext } from 'react'
 
 
 const Home = () => {
-  const [lists, setLists] = useState()
   const [editCategoryId, setEditCategoryId] = useState(null)
+  const {categories, dispatch} = useContext(CategoriesContext)
 
   const handleToggleEdit = (event, category) => {
-    if (editCategoryId) {
-      setEditCategoryId(null)
-    } else {
-      setEditCategoryId(category._id)
-    }
-    
+    if (editCategoryId) setEditCategoryId(null)
+    else setEditCategoryId(category._id)
   }
-
-  
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -27,22 +21,22 @@ const Home = () => {
         const json = await response.json()
         
         if (response.ok) {
-            setLists(json);
+            dispatch({type: 'SET_CATEGORIES', payload: json});
         }
     }
 
     fetchLists();
 
-  }, [])
+  }, [dispatch])
 
   return (
     <div>
         <Navbar/>
-        {lists && lists.map((list) => (
+        {categories && categories.map((category) => (
           <>
-          {editCategoryId === list._id ?
-          <EditCategory category={list} handleToggleEdit={handleToggleEdit}/> :
-          <InspectionLists category={list} handleToggleEdit={handleToggleEdit}/>       
+          {editCategoryId === category._id ?
+          <EditCategory category={category} handleToggleEdit={handleToggleEdit}/> :
+          <InspectionLists category={category} handleToggleEdit={handleToggleEdit}/>       
           }
           </>
         ))}

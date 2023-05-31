@@ -1,9 +1,12 @@
-import Home from "./pages/Home";
+import { CategoriesContextProvider } from "./contexts/categoriesContext";
+import Home from "./pages/home";
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <CategoriesContextProvider>
+        <Home/>
+      </CategoriesContextProvider>
     </div>
   );
 }

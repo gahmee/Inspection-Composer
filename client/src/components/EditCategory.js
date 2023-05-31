@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { CategoriesContext } from "../contexts/categoriesContext"
 
 const EditCategory = ({category, handleToggleEdit}) => {
     const [title, setTitle] = useState(category.title)
     const [list, setList] = useState(category.list)
+    const {dispatch} = useContext(CategoriesContext)
 
     const handleInputChange = (value, index) => {
         const updatedList = [...list]
@@ -28,6 +30,7 @@ const EditCategory = ({category, handleToggleEdit}) => {
 
         if (response.ok) {
             console.log('edited new product', json)
+            dispatch({type: 'EDIT_CATEGORY', payload: json})
         }
     }
 
