@@ -9,9 +9,14 @@ export const categoriesReducer = (state, action) => {
                 categories: action.payload
             }
         case 'EDIT_CATEGORY':
-            const removedPrevious = state.categories.filter((category) => category._id !== action.payload._id)
+            const index = state.categories.findIndex((category) => category._id === action.payload._id)
+            state.categories[index] = action.payload
             return {
-                categories: [action.payload, ...removedPrevious]
+                categories: [...state.categories]
+            }
+        default:
+            return {
+                state
             }
     }
 }
