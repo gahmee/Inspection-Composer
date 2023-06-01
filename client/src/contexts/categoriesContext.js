@@ -13,11 +13,17 @@ export const categoriesReducer = (state, action) => {
                 categories: [...state.categories, action.payload]
             }
         case 'EDIT_CATEGORY':
-            const index = state.categories.findIndex((category) => category._id === action.payload._id)
-            state.categories[index] = action.payload
+            const indexToEdit = state.categories.findIndex((category) => category._id === action.payload._id)
+            state.categories[indexToEdit] = action.payload
             return {
                 categories: [...state.categories]
             }
+        case 'DELETE_CATEGORY':
+            const indexToDelete = state.categories.findIndex((category) => category._id === action.payload._id)
+            state.categories.splice(indexToDelete, 1)
+            return {
+                categories: [...state.categories]
+            }        
         default:
             return {
                 state
