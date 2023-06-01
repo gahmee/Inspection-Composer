@@ -3,16 +3,12 @@ import EditCategory from "../components/EditCategory"
 import Navbar from "../components/Navbar"
 import { CategoriesContext } from "../contexts/categoriesContext"
 import { useEffect, useState, useContext } from 'react'
+import CreateCategory from "../components/CreateCategory"
 
 
 const Home = () => {
   const [editCategoryId, setEditCategoryId] = useState(null)
   const {categories, dispatch} = useContext(CategoriesContext)
-
-  const handleToggleEdit = (event, category) => {
-    if (editCategoryId) setEditCategoryId(null)
-    else setEditCategoryId(category._id)
-  }
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -29,6 +25,11 @@ const Home = () => {
 
   }, [dispatch])
 
+  const handleToggleEdit = (event, category) => {
+    if (editCategoryId) setEditCategoryId(null)
+    else setEditCategoryId(category._id)
+  }
+
   return (
     <div>
         <Navbar/>
@@ -40,6 +41,7 @@ const Home = () => {
           }
           </>
         ))}
+        <CreateCategory/>
     </div>
   )
 }

@@ -8,6 +8,10 @@ export const categoriesReducer = (state, action) => {
             return {
                 categories: action.payload
             }
+        case 'CREATE_CATEGORY':
+            return {
+                categories: [...state.categories, action.payload]
+            }
         case 'EDIT_CATEGORY':
             const index = state.categories.findIndex((category) => category._id === action.payload._id)
             state.categories[index] = action.payload
