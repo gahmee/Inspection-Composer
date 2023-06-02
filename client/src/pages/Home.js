@@ -9,6 +9,7 @@ import CreateCategory from "../components/CreateCategory"
 const Home = () => {
   const [editCategoryId, setEditCategoryId] = useState(null)
   const {categories, dispatch} = useContext(CategoriesContext)
+  const [toggleNewCategory, setToggleNewCategory] = useState(false)
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -30,6 +31,10 @@ const Home = () => {
     else setEditCategoryId(category._id)
   }
 
+  const handleToggleCategoryEdit = () => {
+    setToggleNewCategory(!toggleNewCategory)
+  }
+
   return (
     <div>
         <Navbar/>
@@ -41,7 +46,8 @@ const Home = () => {
           }
           </>
         ))}
-        <CreateCategory/>
+        {toggleNewCategory && <CreateCategory />}
+        <button onClick={handleToggleCategoryEdit}>New</button>
     </div>
   )
 }
