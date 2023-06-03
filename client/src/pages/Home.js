@@ -10,6 +10,7 @@ const Home = () => {
   const [editCategoryId, setEditCategoryId] = useState(null)
   const {categories, dispatch} = useContext(CategoriesContext)
   const [toggleNewCategory, setToggleNewCategory] = useState(false)
+  const [composedInspection, setComposedInspection] = useState('')
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -42,12 +43,19 @@ const Home = () => {
           <>
           {editCategoryId === category._id ?
           <EditCategory category={category} handleToggleEdit={handleToggleEdit}/> :
-          <InspectionLists category={category} handleToggleEdit={handleToggleEdit}/>       
+          <InspectionLists 
+            category={category} 
+            handleToggleEdit={handleToggleEdit} 
+            composedInspection={composedInspection}
+            setComposedInspection={setComposedInspection}
+          />       
           }
           </>
         ))}
         {toggleNewCategory && <CreateCategory />}
         <button onClick={handleToggleCategoryEdit}>New</button>
+
+        <div>{composedInspection}</div>
     </div>
   )
 }
