@@ -53,6 +53,15 @@ const EditCategory = ({category, handleToggleEdit}) => {
             dispatch({type: 'DELETE_CATEGORY', payload: json})
         }
     }
+
+    const handleAdd = () => {
+        setList([...list, ''])
+    }
+
+    const handleRemoveListItem = (listItem) => {
+        setList(list.filter((i) => i !== listItem))
+    }
+
     return (
         <div>
             <input 
@@ -67,11 +76,15 @@ const EditCategory = ({category, handleToggleEdit}) => {
                         value={list[index]} 
                         onChange={(e) => handleListChange(e.target.value, index)}>
                     </input>
+                    <button onClick={(e) =>handleRemoveListItem(list[index])}>X</button>
                 </div>
             )}
+            <button onClick={(event) => handleAdd(event)}>Add</button>
+            <div>
             <button onClick={(event) => handleSubmit(event)}>Submit</button>
             <button onClick={(event) => handleToggleEdit(event, category)}>Cancel</button>
             <button onClick={(event) => handleDelete(event)}>Delete</button>
+            </div>
         </div>
     )
 }
