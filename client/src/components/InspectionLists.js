@@ -16,7 +16,7 @@ const InspectionLists = ({category, handleToggleEdit, composedInspection, setCom
     <div>
       <h1>{category.title}</h1>
       {category.list.map((listItem, index) => 
-        <div>
+        <div key={listItem + index}>
           <input 
             type="checkbox" 
             name={"test" + index}
