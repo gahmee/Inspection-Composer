@@ -22,7 +22,7 @@ export const categoriesReducer = (state, action) => {
             const removedCategory = state.categories.filter((category) => category._id !== action.payload._id)
             return {
                 categories: [...removedCategory]
-            }        
+            }
         default:
             return {
                 state
@@ -31,13 +31,13 @@ export const categoriesReducer = (state, action) => {
 }
 
 
-export const CategoriesContextProvider = ({children}) => {
+export const CategoriesContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(categoriesReducer, {
         categories: null
     })
 
     return (
-        <CategoriesContext.Provider value={{...state, dispatch}}>
+        <CategoriesContext.Provider value={{ ...state, dispatch }}>
             {children}
         </CategoriesContext.Provider>
     )

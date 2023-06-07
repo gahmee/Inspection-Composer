@@ -1,5 +1,5 @@
 
-const InspectionLists = ({category, handleToggleEdit, composedInspection, setComposedInspection}) => {
+const InspectionLists = ({ category, handleToggleEdit, composedInspection, setComposedInspection }) => {
 
   const handleClick = (event, listItem) => {
     if (event.target.checked) {
@@ -13,22 +13,23 @@ const InspectionLists = ({category, handleToggleEdit, composedInspection, setCom
 
 
   return (
-    <div>
+    <div className="category-container">
       <h1>{category.title}</h1>
-      {category.list.map((listItem, index) => 
-        <div key={listItem + index}>
-          <input 
-            type="checkbox" 
+      {category.list.map((listItem, index) =>
+        <div key={listItem + index} className="list-item-container">
+          <input
+            type="checkbox"
             name={"test" + index}
             id={listItem + index}
             onChange={(event) => handleClick(event, listItem)}
+            className="list-item-checkbox"
           />
-          <label for={listItem + index}>
+          <label htmlFor={listItem + index} className="list-item-label">
             {listItem}
           </label>
         </div>
       )}
-      <button onClick={(event) => handleToggleEdit(event, category)}>Edit</button>
+      <button onClick={(event) => handleToggleEdit(event, category)} id="category-edit-button">Edit</button>
     </div>
   )
 }
