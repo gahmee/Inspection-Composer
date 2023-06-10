@@ -15,6 +15,8 @@ html {
 }
 
 .category-container {
+  display: flex;
+  flex-direction: column;
   width: 95%;
   margin: 1%;
   padding: 1%;
@@ -25,8 +27,29 @@ html {
 
 #category-title {
   font-size: 30px;
-  font-weight: bold
+  font-weight: bold;
+  margin-top: -30px;
+  padding: 0 0 2%;
 }
+
+#add-button {
+  align-self: center;
+}
+
+#category-edit-button {
+  align-self: flex-end;
+}
+
+#edit-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#delete-button {
+  align-self: flex-end;
+}
+
 
 
 code {

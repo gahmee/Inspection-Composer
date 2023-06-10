@@ -16,6 +16,7 @@ const InspectionLists = ({ category, handleToggleEdit, composedInspection, setCo
 
   return (
     <div className="category-container">
+      <IconButton onClick={(event) => handleToggleEdit(event, category)} id="category-edit-button"><EditIcon /></IconButton>
       <div id="category-title">{category.title}</div>
       <FormGroup>
         {category.list.map((listItem, index) =>
@@ -32,7 +33,6 @@ const InspectionLists = ({ category, handleToggleEdit, composedInspection, setCo
           </div>
         )}
       </FormGroup>
-      <IconButton onClick={(event) => handleToggleEdit(event, category)} id="category-edit-button"><EditIcon /></IconButton>
     </div>
   )
 }

@@ -96,11 +96,13 @@ const EditCategory = ({ category, handleToggleEdit }) => {
                     {/* <IconButton color="primary" onClick={(e) => handleRemoveListItem(list[index])}><DeleteIcon /></IconButton> */}
                 </div>
             )}
-            <IconButton color="success" onClick={(event) => handleAdd(event)}><AddCircleIcon /></IconButton>
-            <div>
-                <Button variant="contained" color="success" onClick={(event) => handleSubmit(event)}>Submit</Button>
-                <Button variant="outlined" onClick={(event) => handleToggleEdit(event, category)}>Cancel</Button>
-                <Button variant="outlined" color="error" onClick={(event) => handleDelete(event)}>Delete</Button>
+            <IconButton id="add-button" color="success" onClick={(event) => handleAdd(event)} size="large" ><AddCircleIcon fontSize="inherit" /></IconButton>
+            <div id="edit-buttons">
+                <div>
+                    <Button variant="contained" color="success" onClick={(event) => handleSubmit(event)}>Submit</Button>
+                    <Button variant="outlined" onClick={(event) => handleToggleEdit(event, category)}>Cancel</Button>
+                </div>
+                <Button id="delete-button" variant="outlined" color="error" onClick={(event) => handleDelete(event)}>Delete</Button>
             </div>
         </div>
     )

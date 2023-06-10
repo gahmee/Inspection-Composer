@@ -5,6 +5,8 @@ import Navbar from "../components/Navbar"
 import { CategoriesContext } from "../contexts/categoriesContext"
 import { useEffect, useState, useContext } from 'react'
 import CreateCategory from "../components/CreateCategory"
+import { IconButton } from '@mui/material'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
 const Home = () => {
@@ -58,14 +60,14 @@ const Home = () => {
           }
         </React.Fragment>
       ))}
-      {toggleNewCategory && <CreateCategory />}
-      {!toggleNewCategory ?
-        <button onClick={handleToggleCategoryEdit}>New</button> :
-        <button onClick={handleToggleCategoryEdit}>Cancel</button>
-      }
+      {toggleNewCategory && <CreateCategory handleToggleCategoryEdit={handleToggleCategoryEdit} />}
+
+      <IconButton id="add-button" color="success" onClick={handleToggleCategoryEdit} size="large" ><AddCircleIcon fontSize="inherit" /></IconButton>
 
 
-      <div>{composedInspection}</div>
+      <div className='category-container'>
+        {composedInspection}
+      </div>
       <button onClick={handleCopyToClipBoard}>Copy</button>
     </div>
   )
