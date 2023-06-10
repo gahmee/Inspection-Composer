@@ -1,4 +1,5 @@
-import { Checkbox, FormGroup, FormControlLabel } from "@mui/material"
+import { Checkbox, FormGroup, FormControlLabel, IconButton } from "@mui/material"
+import EditIcon from '@mui/icons-material/Edit';
 
 const InspectionLists = ({ category, handleToggleEdit, composedInspection, setComposedInspection }) => {
 
@@ -25,15 +26,13 @@ const InspectionLists = ({ category, handleToggleEdit, composedInspection, setCo
               id={listItem + index}
               onChange={(event) => handleClick(event, listItem)}
               className="list-item-checkbox"
-              control={<Checkbox style={{
-                color: "#90CAF9",
-              }} />}
+              control={<Checkbox />}
               label={listItem}
             />
           </div>
         )}
       </FormGroup>
-      <button onClick={(event) => handleToggleEdit(event, category)} id="category-edit-button">Edit</button>
+      <IconButton onClick={(event) => handleToggleEdit(event, category)} id="category-edit-button"><EditIcon /></IconButton>
     </div>
   )
 }

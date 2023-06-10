@@ -1,5 +1,8 @@
 import { useContext, useState } from "react"
 import { CategoriesContext } from "../contexts/categoriesContext"
+import { IconButton, Button, TextField, InputAdornment } from "@mui/material"
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const EditCategory = ({ category, handleToggleEdit }) => {
     const [title, setTitle] = useState(category.title)
@@ -64,27 +67,40 @@ const EditCategory = ({ category, handleToggleEdit }) => {
 
     return (
         <div className="category-container">
-            <input
+            <TextField
                 id="title-input"
                 type="text"
                 value={title}
-                onChange={(e) => handleTitleChange(e.target.value)}>
-            </input>
+                onChange={(e) => handleTitleChange(e.target.value)}
+                label="Category Title"
+            >
+            </TextField>
             {list.map((item, index) =>
                 <div>
-                    <input
+                    <TextField
                         type="text"
                         value={list[index]}
-                        onChange={(e) => handleListChange(e.target.value, index)}>
-                    </input>
-                    <button onClick={(e) => handleRemoveListItem(list[index])}>X</button>
+                        onChange={(e) => handleListChange(e.target.value, index)}
+                        fullWidth
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton onClick={(e) => handleRemoveListItem(list[index])}>
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
+                    >
+                    </TextField>
+                    {/* <IconButton color="primary" onClick={(e) => handleRemoveListItem(list[index])}><DeleteIcon /></IconButton> */}
                 </div>
             )}
-            <button onClick={(event) => handleAdd(event)}>Add</button>
+            <IconButton color="success" onClick={(event) => handleAdd(event)}><AddCircleIcon /></IconButton>
             <div>
-                <button onClick={(event) => handleSubmit(event)}>Submit</button>
-                <button onClick={(event) => handleToggleEdit(event, category)}>Cancel</button>
-                <button onClick={(event) => handleDelete(event)}>Delete</button>
+                <Button variant="contained" color="success" onClick={(event) => handleSubmit(event)}>Submit</Button>
+                <Button variant="outlined" onClick={(event) => handleToggleEdit(event, category)}>Cancel</Button>
+                <Button variant="outlined" color="error" onClick={(event) => handleDelete(event)}>Delete</Button>
             </div>
         </div>
     )
