@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar"
 import { CategoriesContext } from "../contexts/categoriesContext"
 import { useEffect, useState, useContext } from 'react'
 import CreateCategory from "../components/CreateCategory"
-import { IconButton } from '@mui/material'
+import { IconButton, Button, ClickAwayListener, Tooltip } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
@@ -14,6 +14,7 @@ const Home = () => {
   const { categories, dispatch } = useContext(CategoriesContext)
   const [toggleNewCategory, setToggleNewCategory] = useState(false)
   const [composedInspection, setComposedInspection] = useState('')
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -41,7 +42,16 @@ const Home = () => {
 
   const handleCopyToClipBoard = () => {
     navigator.clipboard.writeText(composedInspection)
+    handleTooltipOpen();
   }
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
 
   return (
     <div className='home'>
@@ -65,10 +75,33 @@ const Home = () => {
       <IconButton id="add-button" color="success" onClick={handleToggleCategoryEdit} size="large" ><AddCircleIcon fontSize="inherit" /></IconButton>
 
 
-      <div className='category-container'>
-        {composedInspection}
+      <div className='composed-container'>
+        <div id="composed-title">Composed Inspection</div>
+        <div id="composed-inspection-text">
+          {composedInspection}
+        </div>
+        <div>
+          <ClickAwayListener onClickAway={handleTooltipClose}>
+            <div>
+              <Tooltip
+                PopperProps={{
+                  disablePortal: true,
+                }}
+                onClose={handleTooltipClose}
+                open={open}
+                disableFocusListener
+                disableHoverListener
+                disableTouchListener
+                title="Text Copied"
+              >
+                <Button variant="contained" onClick={handleCopyToClipBoard}>Copy Text</Button>
+              </Tooltip>
+            </div>
+          </ClickAwayListener>
+
+        </div>
       </div>
-      <button onClick={handleCopyToClipBoard}>Copy</button>
+
     </div>
   )
 }

@@ -25,6 +25,27 @@ html {
   border: 1px solid #30363D;
 }
 
+.composed-container {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: 1%;
+  padding: 1%;
+  border-radius: 10px;
+  background-color: #0F1218;
+  border: 1px solid #30363D;
+}
+
+#composed-title {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 0 0 2%;
+}
+
+#composed-inspection-text {
+  padding: 2% 0 2%;
+}
+
 #category-title {
   font-size: 30px;
   font-weight: bold;
