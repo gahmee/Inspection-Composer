@@ -4,7 +4,7 @@ import { useState, useContext } from "react"
 import { TextField, IconButton, InputAdornment } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-
+import { API_URL } from '../config'
 
 const CreateCategory = ({ handleToggleCategoryEdit }) => {
     const [title, setTitle] = useState('Title')
@@ -34,7 +34,7 @@ const CreateCategory = ({ handleToggleCategoryEdit }) => {
 
         const updatedCategory = { title, list }
 
-        const response = await fetch('http://localhost:4000/api/inspection/', {
+        const response = await fetch(API_URL, {
             method: 'POST',
             body: JSON.stringify(updatedCategory),
             headers: {

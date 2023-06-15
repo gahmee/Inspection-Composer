@@ -3,6 +3,7 @@ import { CategoriesContext } from "../contexts/categoriesContext"
 import { IconButton, Button, TextField, InputAdornment } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { API_URL } from '../config'
 
 const EditCategory = ({ category, handleToggleEdit }) => {
     const [title, setTitle] = useState(category.title)
@@ -25,7 +26,7 @@ const EditCategory = ({ category, handleToggleEdit }) => {
 
         const updatedCategory = { title, list }
 
-        const response = await fetch('http://localhost:4000/api/inspection/' + category._id, {
+        const response = await fetch(API_URL + category._id, {
             method: 'PATCH',
             body: JSON.stringify(updatedCategory),
             headers: {
@@ -44,7 +45,7 @@ const EditCategory = ({ category, handleToggleEdit }) => {
 
     const handleDelete = async (event) => {
 
-        const response = await fetch('http://localhost:4000/api/inspection/' + category._id, {
+        const response = await fetch(API_URL + category._id, {
             method: 'DELETE'
         })
 

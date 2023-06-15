@@ -7,6 +7,8 @@ import { useEffect, useState, useContext } from 'react'
 import CreateCategory from "../components/CreateCategory"
 import { IconButton, Button, ClickAwayListener, Tooltip } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { API_URL } from '../config'
+
 
 
 const Home = () => {
@@ -19,7 +21,7 @@ const Home = () => {
   useEffect(() => {
     const fetchLists = async () => {
 
-      const response = await fetch('http://localhost:4000/api/inspection/')
+      const response = await fetch(API_URL)
       const json = await response.json()
 
       if (response.ok) {
