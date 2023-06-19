@@ -1,7 +1,6 @@
 import * as React from 'react'
 import InspectionLists from "../components/InspectionLists"
 import EditCategory from "../components/EditCategory"
-import Navbar from "../components/Navbar"
 import { CategoriesContext } from "../contexts/categoriesContext"
 import { useEffect, useState, useContext } from 'react'
 import CreateCategory from "../components/CreateCategory"
@@ -43,21 +42,20 @@ const Home = () => {
   }
 
   const handleCopyToClipBoard = () => {
-    navigator.clipboard.writeText(composedInspection)
+    navigator.clipboard.writeText(composedInspection.toString().replaceAll(",", ", "))
     handleTooltipOpen();
   }
 
   const handleTooltipClose = () => {
     setOpen(false);
-  };
+  }
 
   const handleTooltipOpen = () => {
     setOpen(true);
-  };
+  }
 
   return (
     <div className='home'>
-      <Navbar />
       {categories && categories.map((category, index) => (
         <React.Fragment key={category + index}>
           {editCategoryId === category._id ?
@@ -80,7 +78,7 @@ const Home = () => {
       <div className='composed-container'>
         <div id="composed-title">Composed Inspection</div>
         <div id="composed-inspection-text">
-          {composedInspection}
+          {composedInspection.toString().replaceAll(",", ", ")}
         </div>
         <div>
           <ClickAwayListener onClickAway={handleTooltipClose}>
