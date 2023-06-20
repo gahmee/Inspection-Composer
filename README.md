@@ -1,10 +1,10 @@
 # Inspection Composer
 
-![Capture](https://github.com/gahmee/Inspection-Composer/assets/69001161/7ee69a5b-d28b-48f4-933d-a5e88d0939a1)
+![Capture](https://github.com/gahmee/Inspection-Composer/assets/69001161/7ee69a5b-d28b-48f4-933d-a5e88d0939a1.PNG)
 
 ## Edit and add new categories
 
-![Capture2](https://github.com/gahmee/Inspection-Composer/assets/69001161/fe61c921-2582-4cfb-985f-e13b142e2b45)
+![Capture2](https://github.com/gahmee/Inspection-Composer/assets/69001161/fe61c921-2582-4cfb-985f-e13b142e2b45.PNG)
 
 
 ## Dev Set Up
