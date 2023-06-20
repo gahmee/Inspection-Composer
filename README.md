@@ -1,5 +1,7 @@
 # Inspection Composer
 
+Inspect a product and compose an inspected description using a checklist
+
 ![Capture](https://github.com/gahmee/Inspection-Composer/assets/69001161/78d96175-0605-4f77-9768-1080e27b90b0)
 
 
